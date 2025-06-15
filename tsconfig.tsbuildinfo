@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controller/streamscontroller.ts","./src/dto/request.ts","./src/dto/response.ts","./src/service/poststreams.ts","./src/service/upvotestreams.ts","./src/lib/catchasync.ts","./src/lib/constants.ts","./src/lib/db.ts"],"version":"5.8.3"}

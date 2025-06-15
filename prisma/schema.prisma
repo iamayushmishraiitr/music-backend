@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  username String
+  password String
+  role     Role
+  streams  Stream[]  @relation("userStreams")
+  upvotes  Upvotes[]
+}
+
+model Stream {
+  id          Int        @id @default(autoincrement())
+  active      Boolean    @default(true)
+  url         String
+  type        StreamType
+  extractedId String
+  userId      Int
+  user        User       @relation("userStreams", fields: [userId], references: [id])
+  upvotes     Upvotes[]
+}
+
+model Upvotes {
+  id       Int    @id @default(autoincrement())
+  userId   Int
+  streamId Int
+  user     User   @relation(fields: [userId], references: [id])
+  stream   Stream @relation(fields: [streamId], references: [id])
+
+  @@unique([userId, streamId])
+}
+
+enum StreamType {
+  spotify
+  youtube
+}
+
+enum Role {
+  Streamer
+  EndUser
+}
