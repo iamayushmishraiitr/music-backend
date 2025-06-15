@@ -22,6 +22,8 @@ model Stream {
   url         String
   type        StreamType
   extractedId String
+  bigImage    String
+  smallImage  String
   userId      Int
   user        User       @relation("userStreams", fields: [userId], references: [id])
   upvotes     Upvotes[]
