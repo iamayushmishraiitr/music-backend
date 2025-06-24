@@ -3,20 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev":"tsc -b  &&  node dist/index.js"
+    "dev": "tsc -b  &&  node dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@prisma/client": "^6.9.0",
+    "@prisma/client": "^6.10.1",
     "cors": "^2.8.5",
     "expres": "^0.0.5",
     "prisma": "^6.9.0",
