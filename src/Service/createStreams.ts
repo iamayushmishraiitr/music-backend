@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prismaClient } from "../lib/db";
+import { db } from "../lib/db";
 import { streamRequestDto } from "../DTO/request";
 import { YT_REGX, SPT_REGEX } from "../lib/constants";
 import { GetVideoDetails } from "youtube-search-api";
@@ -31,13 +31,14 @@ const postStreams = async (req: Request, res: Response) => {
     const thumbnail = streamData.thumbnail;
     thumbnail.sort((a: any, b: any) => a.width - b.width);
 
-    await prismaClient.stream.create({
+    await db.stream.create({
       data: {
         userId: data.userId,
         type: "youtube",
         extractedId,
         url: data.url,
         bigImage: thumbnail[thumbnail.length - 1],
+        spaceId:data.spaceId,
         smallImage:
           thumbnail.length > 1
             ? thumbnail[thumbnail.length - 2]

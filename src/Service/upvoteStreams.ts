@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { prismaClient } from "../lib/db";
+import { db } from "../lib/db";
 import { upvoteRequestDto } from "../DTO/request";
 import { YT_REGX, SPT_REGEX } from "../lib/constants";
 import { GetVideoDetails } from "youtube-search-api";
 const upvoteStreams = async (req: Request, res: Response) => {
   try {
     const data = upvoteRequestDto.parse(req.body);
-    prismaClient.upvotes.create({
+    db.upvotes.create({
       data: {
         userId:data.userId,
         streamId:data.streamId
