@@ -11,26 +11,26 @@ model User {
   id           Int       @id @default(autoincrement())
   username     String
   password     String
-  role         Role
+  email        String
   streams      Stream[]  @relation("userStreams")
   upvotes      Upvotes[]
   hostedSpaces Space[]   @relation("hostedBy")
 }
 
 model Stream {
-  id          Int        @id @default(autoincrement())
-  active      Boolean    @default(true)
+  id          Int            @id @default(autoincrement())
+  active      Boolean        @default(true)
   url         String
   type        StreamType
   extractedId String
   bigImage    String
   smallImage  String
   userId      Int
-  user        User       @relation("userStreams", fields: [userId], references: [id])
+  user        User           @relation("userStreams", fields: [userId], references: [id])
   upvotes     Upvotes[]
-  currentStream CurrentStream?
-  spaceId Int?
-  space   Space? @relation("spaceStreams", fields: [spaceId], references: [id], onDelete: Cascade)
+  current     CurrentStream?
+  spaceId     Int?
+  space       Space?         @relation("spaceStreams", fields: [spaceId], references: [id], onDelete: Cascade)
 }
 
 model Upvotes {
@@ -44,14 +44,12 @@ model Upvotes {
 }
 
 model CurrentStream {
-  id     Int @id @default(autoincrement())
-  userId Int
-
+  id       Int    @id @default(autoincrement())
+  userId   Int
   streamId Int    @unique
   stream   Stream @relation(fields: [streamId], references: [id])
-
-  spaceId Int?   @unique
-  space   Space? @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  spaceId  Int?   @unique
+  space    Space? @relation(fields: [spaceId], references: [id], onDelete: Cascade)
 }
 
 model Space {

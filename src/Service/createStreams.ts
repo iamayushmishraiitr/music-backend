@@ -28,25 +28,25 @@ const postStreams = async (req: Request, res: Response) => {
     }
 
     const streamData = await GetVideoDetails(extractedId);
-    const thumbnail = streamData.thumbnail;
-    thumbnail.sort((a: any, b: any) => a.width - b.width);
-
-    await db.stream.create({
+    const {thumbnails} = streamData.thumbnail;
+    console.log()
+    thumbnails.sort((a: any, b: any) => a.width - b.width);
+   const response= await db.stream.create({
       data: {
-        userId: data.userId,
+        userId: Number(data.userId),
         type: "youtube",
         extractedId,
         url: data.url,
-        bigImage: thumbnail[thumbnail.length - 1],
-        spaceId:data.spaceId,
+        bigImage: thumbnails[thumbnails.length - 1]?.url,
+        spaceId:Number(data.spaceId),
         smallImage:
-          thumbnail.length > 1
-            ? thumbnail[thumbnail.length - 2]
-            : thumbnail[thumbnail.length - 1],
+          thumbnails.length > 1
+            ? thumbnails[thumbnails.length - 2]?.url
+            : thumbnails[thumbnails.length - 1]?.url,
       },
     });
 
-    return res.status(201).json({ message: "Stream created successfully" });
+    return res.status(201).json({ message: "Stream created successfully" , data :response });
   } catch (e) {
     console.error("Unexpected error:", e);
     return res.status(500).json({ error: "Internal server error" });

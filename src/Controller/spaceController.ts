@@ -1,9 +1,9 @@
 import express from "express";
-import postStreams from "../Service/createStreams";
 import { catchAsync } from "../lib/catchasync";
-import upvoteStreams from "../Service/upvoteStreams";
+import createSpace from "../Service/Space/createSpace";
+import getSpaces from "../Service/Space/getSpace";
 const router = express.Router();
-router.post("/createSpace"); 
-router.get("/getSpace")
+router.post("/createSpace",catchAsync(createSpace)); 
+router.get("/getSpace",catchAsync(getSpaces))
 
 export default router;
