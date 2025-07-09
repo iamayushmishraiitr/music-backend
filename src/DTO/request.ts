@@ -24,4 +24,5 @@ export const downvoteRequestDto = z.object({
 export const createSpaceDto = z.object({
   userId: z.number(),
   name: z.string(),
+  description:z.string()
 });

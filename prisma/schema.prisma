@@ -59,6 +59,7 @@ model Space {
   hostId        Int
   host          User           @relation("hostedBy", fields: [hostId], references: [id])
   isActive      Boolean        @default(true)
+  description   String         @default("here is my space")
   currentStream CurrentStream?
 }
 

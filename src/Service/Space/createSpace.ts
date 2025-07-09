@@ -7,7 +7,8 @@ const createSpace = async (req: Request, res: Response) => {
      await db.space.create({
       data :{
          hostId :data.userId ,
-         name : data.name
+         name : data.name,
+         description:data.description
       }
      })
      return res.status(201).json({ message: "Stream created successfully" });

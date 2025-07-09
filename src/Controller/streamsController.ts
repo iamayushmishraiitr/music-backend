@@ -8,8 +8,8 @@ import playNext from "../Service/playNext";
 import getCurrentStream from "../Service/getCurrentStream";
 const router = express.Router();
 router.post("/postStreams", catchAsync(postStreams))
-router.get("/getTopStream",catchAsync(getTopStreams)) 
-router.get("/currentStream",catchAsync(getCurrentStream))
+router.get("/getStreams",catchAsync(getTopStreams)) 
+router.get("/getCurrentStream",catchAsync(getCurrentStream))
 router.post("/upVote",catchAsync(upvoteStreams))
 router.post("/downVote",catchAsync(downvoteStreams))
 router.post("/playNext",catchAsync(playNext)) 
