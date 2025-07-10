@@ -4,7 +4,7 @@ import { downvoteRequestDto} from "../DTO/request";
 const downvoteStreams = async (req: Request, res: Response) => {
   try {
     const data = downvoteRequestDto.parse(req.body);
-    db.upvotes.delete({
+   await db.upvotes.delete({
       where: {
         userId_streamId : {
         userId:data.userId,

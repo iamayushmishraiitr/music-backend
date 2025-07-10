@@ -4,10 +4,14 @@ import { upvoteRequestDto } from "../DTO/request";
 const upvoteStreams = async (req: Request, res: Response) => {
   try {
     const data = upvoteRequestDto.parse(req.body);
-    db.upvotes.create({
+    await db.upvotes.create({
       data: {
-        userId:data.userId,
-        streamId:data.streamId,
+        user: {
+          connect: { id: data.userId },
+        },
+        stream: {
+          connect: { id: data.streamId },
+        },
       },
     });
    return res.status(201).json({message:"upvoted Successfully"})

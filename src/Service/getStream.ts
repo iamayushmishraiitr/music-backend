@@ -21,9 +21,7 @@ const getStreams = async (req: Request, res: Response) => {
       include: {
         streams: {
           where: {
-            id: {
-              not: current?.streamId ?? -1,
-            },
+            active :true
           },
           orderBy: {
             upvotes: {
@@ -41,6 +39,7 @@ const getStreams = async (req: Request, res: Response) => {
     return res.status(200).json({
       message: "fetced The stream in the space ",
       data: response?.streams,
+      hostId : response?.hostId
     });
   } catch (e) {
     console.error("Unexpected error:", e);

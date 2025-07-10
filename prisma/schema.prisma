@@ -50,6 +50,7 @@ model CurrentStream {
   stream   Stream @relation(fields: [streamId], references: [id])
   spaceId  Int?   @unique
   space    Space? @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  @@unique([userId, spaceId])
 }
 
 model Space {

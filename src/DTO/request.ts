@@ -13,7 +13,7 @@ export const upvoteRequestDto = z.object({
 export const playNextDTO = z.object({
   userId: z.number(),
   spaceId: z.number(),
-  streamId: z.number(),
+
 });
 
 export const downvoteRequestDto = z.object({
