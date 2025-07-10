@@ -46,7 +46,7 @@ const postStreams = async (req: Request, res: Response) => {
       },
     });
 
-    return res.status(201).json({ message: "Stream created successfully" , data :response });
+    return res.status(201).json({ message: "Stream created successfully" , body :response });
   } catch (e) {
     console.error("Unexpected error:", e);
     return res.status(500).json({ error: "Internal server error" });

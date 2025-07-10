@@ -30,9 +30,13 @@ const getStreams = async (req: Request, res: Response) => {
               _count: "desc",
             },
           },
+          include: {
+            upvotes: true,
+          },
         },
       },
     });
+    
 
     return res.status(200).json({
       message: "fetced The stream in the space ",
