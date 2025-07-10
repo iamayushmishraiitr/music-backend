@@ -9,12 +9,12 @@ datasource db {
 
 model User {
   id           Int       @id @default(autoincrement())
-  username     String
+  username     String     
   password     String
-  email        String
-  streams      Stream[]  @relation("userStreams")
+  email        String     @unique
+  streams      Stream[]   @relation("userStreams")
   upvotes      Upvotes[]
-  hostedSpaces Space[]   @relation("hostedBy")
+  hostedSpaces Space[]    @relation("hostedBy")
 }
 
 model Stream {
