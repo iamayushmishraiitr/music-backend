@@ -14,6 +14,7 @@ app.use(
   cors({
     origin: "https://music-frontend-yymr.vercel.app",
     credentials: true, 
+    methods : ["GET","POST"]
   })
 );
 
