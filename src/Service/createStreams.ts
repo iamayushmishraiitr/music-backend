@@ -6,36 +6,14 @@ import { GetVideoDetails } from "youtube-search-api";
 const postStreams = async (req: Request, res: Response) => {
   try {
     const data = streamRequestDto.parse(req.body);
-    if (!YT_REGX.test(data.url) && !SPT_REGEX.test(data.url)) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Invalid URL format. Only YouTube or Spotify links are allowed.",
-        });
-    }
-    let extractedId: string | undefined;
-    if (YT_REGX.test(data.url)) extractedId = data.url.split("?v=")[1];
-    if (SPT_REGEX.test(data.url))
-      extractedId = data.url.split("/").filter(Boolean).pop();
-    if (!extractedId) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Invalid URL format. Only YouTube or Spotify links are allowed.",
-        });
-    }
-
-    const streamData = await GetVideoDetails(extractedId);
-    const {thumbnails} = streamData.thumbnail;
-    console.log()
+    const streamData = await GetVideoDetails(data.extractedId);
+    const {thumbnails} = streamData.thumbnail
     thumbnails.sort((a: any, b: any) => a.width - b.width);
    const response= await db.stream.create({
       data: {
         userId: Number(data.userId),
         type: "youtube",
-        extractedId,
+        extractedId : data.extractedId,
         url: data.url,
         bigImage: thumbnails[thumbnails.length - 1]?.url,
         spaceId:Number(data.spaceId),
@@ -45,7 +23,6 @@ const postStreams = async (req: Request, res: Response) => {
             : thumbnails[thumbnails.length - 1]?.url,
       },
     });
-
     return res.status(201).json({ message: "Stream created successfully" , body :response });
   } catch (e) {
     console.error("Unexpected error:", e);

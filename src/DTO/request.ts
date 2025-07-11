@@ -3,6 +3,7 @@ export const streamRequestDto = z.object({
   userId: z.string(),
   url: z.string(),
   spaceId: z.string(),
+  extractedId : z.string() ,
 });
 
 export const upvoteRequestDto = z.object({

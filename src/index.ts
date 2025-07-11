@@ -12,11 +12,15 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://music-frontend-yymr.vercel.app",
-    credentials: true, 
-    methods : ["GET","POST"]
+    origin: [
+      "https://music-frontend-yymr.vercel.app",
+      "http://localhost:5173"
+    ],
+    credentials: true,
+    methods: ["GET", "POST"]
   })
 );
+
 
 app.use(express.json());
 app.use(cookieParser());
