@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsc -b  &&  node dist/index.js " ,
-    "build" :"npx tsc -b "
+    "build" :"pnpm i typescript && npx prisma generate  &&  npx tsc -b " 
   },
   "keywords": [],
   "author": "",
