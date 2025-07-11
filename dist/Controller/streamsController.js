@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const createStreams_1 = __importDefault(require("../Service/createStreams"));
+const catchasync_1 = require("../lib/catchasync");
+const upvoteStreams_1 = __importDefault(require("../Service/upvoteStreams"));
+const getStream_1 = __importDefault(require("../Service/getStream"));
+const downvoteStreams_1 = __importDefault(require("../Service/downvoteStreams"));
+const playNext_1 = __importDefault(require("../Service/playNext"));
+const getCurrentStream_1 = __importDefault(require("../Service/getCurrentStream"));
+const router = express_1.default.Router();
+router.post("/postStreams", (0, catchasync_1.catchAsync)(createStreams_1.default));
+router.get("/getStreams", (0, catchasync_1.catchAsync)(getStream_1.default));
+router.get("/getCurrentStream", (0, catchasync_1.catchAsync)(getCurrentStream_1.default));
+router.post("/upVote", (0, catchasync_1.catchAsync)(upvoteStreams_1.default));
+router.post("/downVote", (0, catchasync_1.catchAsync)(downvoteStreams_1.default));
+router.post("/playNext", (0, catchasync_1.catchAsync)(playNext_1.default));
+exports.default = router;
