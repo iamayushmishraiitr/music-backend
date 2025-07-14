@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc -b  &&  node dist/index.js " ,
-    "build" :"pnpm i typescript && npx prisma generate  &&  npx tsc -b " 
+    "dev": "tsc -b  &&  node dist/index.js ",
+    "build": "pnpm i typescript && npx prisma generate  &&  npx tsc -b "
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/ws": "^8.18.1",
     "typescript": "^5.8.3"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^6.9.0",
+    "ws": "^8.18.3",
     "youtube-search-api": "^2.0.0",
     "zod": "^3.25.64"
   }

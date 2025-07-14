@@ -23,11 +23,16 @@ const getStreams = async (req: Request, res: Response) => {
           where: {
             active :true
           },
-          orderBy: {
-            upvotes: {
-              _count: "desc",
+          orderBy: [
+            {
+              upvotes: {
+                _count: "desc",
+              },
             },
-          },
+            {
+              createdAt: "asc", 
+            },
+          ],
           include: {
             upvotes: true,
           },
