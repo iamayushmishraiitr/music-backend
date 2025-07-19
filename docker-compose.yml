@@ -1,0 +1,43 @@
+services:
+  backend:
+    container_name: music_backend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+
+  postgres:
+    image: postgres:latest
+    container_name: postgresDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - music_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  
+  prisma-studio:
+    container_name: prisma-studio
+    image: timothyjmiller/prisma-studio:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - ${PRISMA_STUDIO_PORT}:5555
+
+volumes:
+  music_postgres_data:
+    external: false
+ 

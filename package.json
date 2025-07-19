@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc -b  &&  node dist/index.js ",
-    "build": "pnpm i typescript && npx prisma generate  &&  npx tsc -b "
+    "dev": "node dist/index.js ",
+    "build": "npm i typescript && npx prisma generate  &&  npx tsc -b "
   },
   "keywords": [],
   "author": "",
