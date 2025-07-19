@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 
 RUN npm run build 
-RUN RUN DATABASE_URL=$DATABASE_URL npx prisma generate
+
 EXPOSE   3000
 
 CMD ["npm", "run", "dev"] 

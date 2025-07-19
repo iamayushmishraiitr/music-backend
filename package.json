@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "node dist/index.js ",
+    "dev": "npx prisma migrate dev  && node dist/index.js ",
     "build": "npm i typescript && npx prisma generate  &&  npx tsc -b "
+     
   },
   "keywords": [],
   "author": "",
