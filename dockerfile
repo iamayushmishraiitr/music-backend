@@ -12,4 +12,4 @@ RUN POSTGRES_URL=$POSTGRES_URL npx prisma generate
 
 EXPOSE   3000
 
-CMD ["npm", "run", "dev"] 
+CMD ["npm", "run", "start"] 
