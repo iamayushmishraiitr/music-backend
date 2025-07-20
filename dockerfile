@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN POSTGRES_URL=$POSTGRES_URL npx prisma generate
+RUN npm run build
 
 EXPOSE   3000
 
