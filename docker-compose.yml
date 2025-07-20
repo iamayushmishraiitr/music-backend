@@ -3,7 +3,7 @@ services:
     container_name: music_backend
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     depends_on:
